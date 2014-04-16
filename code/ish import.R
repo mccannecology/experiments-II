@@ -8,24 +8,52 @@
 ##########################################
 library(plyr)
 
-################################################
 data_area_raw <- read.csv("singlespecies_area_raw.csv") # import area data 
 
 # add a new variable that combines plate and well to use as an ID 
-data_area_raw$id <- paste(data_area_raw$plate,data_area_raw$well,sep="")
+data_area_raw$id <- paste(data_area_raw$Plate,data_area_raw$Row,data_area_raw$col,sep="")
 
-# reshape so repeated measures (days) occur as separate rows 
-# new variable headings with be LM, SP, WB, and TOT (areas)
+############################# 
+# reshape data              #    
+# repeated measures (days)  #
+# occur as separate rows    #
+#############################
+# new variable headings be day and area 
 data_area <- reshape(data_area_raw, 
                         idvar="id",
-                        varying = c("area0","area2","area4","area6","area8","area10"),
+                        varying = c("area0","area3","area5","area7","area10","area12"),
                         times = c(0,3,5,7,10,12),
                         timevar = "day",
+                        v.names = "area",
                         direction = "long")
 
 # clean-up
-data_area <- data_area[with(data_area, order(day,id)),] # re-order - by id and day
 row.names(data_area) <- seq(nrow(data_area)) # Re-name the rows so they're not so ugly
+
+# check it out 
+head(data_area)
+
+#######################
+# Mean area           #
+# by treatment combo  #
+# Use for plotting    #
+#######################
+# Area
+summary_data_area <- ddply(data_area, c("species","Temp","Nutr","day"), summarise, 
+                           N = length(area),
+                           mean = mean(area),
+                           sd = sd(area),
+                           se = sd / sqrt(N) )
+head(summary_data_area)
+colnames(summary_data_area)[6] <- "area"
+
+
+
+
+
+
+
+
 
 # add standardized area 
 initial <- subset(data_area$area_mm2,data_area$day == 0) # creates a vector of initial areas 

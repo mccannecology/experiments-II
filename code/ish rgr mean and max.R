@@ -4,7 +4,7 @@
 #                                        #
 # Plotting data                          #
 # RGR                                    #
-# average                                #
+# average and max within a replicate     #
 ##########################################
 library(ggplot2)
 
@@ -13,22 +13,71 @@ head(data_rgr)
 head(summary_data_rgr)
 
 ############
+# rgr_avg  #
 # Raw data #
 ############
 # colour
-raw_rgr_0to12_plot <- ggplot(data_rgr, aes(x=day,y=rgr,group=id,colour=species)) + geom_line() + geom_point() 
-raw_rgr_0to12_plot <- raw_rgr_0to12_plot + facet_grid(Nutr ~ Temp)
-raw_rgr_0to12_plot <- raw_rgr_0to12_plot + scale_x_discrete(breaks=c(1.5,4,6,8.5,11),labels=c(1.5,4,6,8.5,11))
-raw_rgr_0to12_plot <- raw_rgr_0to12_plot + ylab("rgr (sq. mm")
-raw_rgr_0to12_plot 
+raw_rgr_avg_plot <- ggplot(data_raw, aes(x=species,y=rgr_avg)) + geom_point() 
+raw_rgr_avg_plot <- raw_rgr_avg_plot + facet_grid(Nutr ~ Temp)
+raw_rgr_avg_plot <- raw_rgr_avg_plot + ylab("Max RGR")
+raw_rgr_avg_plot 
 
 ############
+# rgr_avg  #
 # Average  #
 ############
 # colour
-mean_rgr_0to12_plot <- ggplot(summary_data_rgr, aes(x=day,y=rgr,colour=species)) + geom_line() + geom_point() 
-mean_rgr_0to12_plot <- mean_rgr_0to12_plot + geom_errorbar(aes(ymin=rgr-se, ymax=rgr+se), width=0.1)
-mean_rgr_0to12_plot <- mean_rgr_0to12_plot + facet_grid(Nutr ~ Temp)
-mean_rgr_0to12_plot <- mean_rgr_0to12_plot + scale_x_discrete(breaks=c(1.5,4,6,8.5,11),labels=c(1.5,4,6,8.5,11))
-mean_rgr_0to12_plot <- mean_rgr_0to12_plot + ylab("rgr (sq. mm")
-mean_rgr_0to12_plot 
+mean_rgr_avg_plot <- ggplot(summary_data_rgr_avg, aes(x=species,y=rgr_avg)) + geom_point() 
+mean_rgr_avg_plot <- mean_rgr_avg_plot + geom_errorbar(aes(ymin=rgr_avg-se, ymax=rgr_avg+se), width=0.1)
+mean_rgr_avg_plot <- mean_rgr_avg_plot + facet_grid(Nutr ~ Temp)
+mean_rgr_avg_plot <- mean_rgr_avg_plot + ylab("Max RGR")
+mean_rgr_avg_plot 
+
+#####################
+# Preliminary anova #
+# Y = rgr_avg       #
+# Treatments:       #
+# species,          #
+# nutrients,        #
+# temperature,      #
+#####################
+rgr_avg_anova <- aov(rgr_avg ~ species*Temp*Nutr, data=data_raw)
+summary(rgr_avg_anova)
+TukeyHSD(rgr_avg_anova)
+
+
+
+
+
+############
+# rgr_max  #
+# Raw data #
+############
+# colour
+raw_rgr_max_plot <- ggplot(data_raw, aes(x=species,y=rgr_max)) + geom_point() 
+raw_rgr_max_plot <- raw_rgr_max_plot + facet_grid(Nutr ~ Temp)
+raw_rgr_max_plot <- raw_rgr_max_plot + ylab("Mean RGR")
+raw_rgr_max_plot 
+
+############
+# rgr_max  #
+# Average  #
+############
+# colour
+mean_rgr_max_plot <- ggplot(summary_data_rgr_max, aes(x=species,y=rgr_max)) + geom_point() 
+mean_rgr_max_plot <- mean_rgr_max_plot + geom_errorbar(aes(ymin=rgr_max-se, ymax=rgr_max+se), width=0.1)
+mean_rgr_max_plot <- mean_rgr_max_plot + facet_grid(Nutr ~ Temp)
+mean_rgr_max_plot <- mean_rgr_max_plot + ylab("Mean RGR")
+mean_rgr_max_plot 
+
+#####################
+# Preliminary anova #
+# Y = rgr_max       #
+# Treatments:       #
+# species,          #
+# nutrients,        #
+# temperature,      #
+#####################
+rgr_max_anova <- aov(rgr_max ~ species*Temp*Nutr, data=data_raw)
+summary(rgr_max_anova)
+TukeyHSD(rgr_max_anova)

@@ -13,6 +13,7 @@ head(data_rgr)
 head(summary_data_rgr)
 
 ############
+# RGR      #
 # Raw data #
 ############
 # colour
@@ -23,6 +24,7 @@ raw_rgr_0to12_plot <- raw_rgr_0to12_plot + ylab("rgr (sq. mm")
 raw_rgr_0to12_plot 
 
 ############
+# RGR      #
 # Average  #
 ############
 # colour
@@ -32,3 +34,17 @@ mean_rgr_0to12_plot <- mean_rgr_0to12_plot + facet_grid(Nutr ~ Temp)
 mean_rgr_0to12_plot <- mean_rgr_0to12_plot + scale_x_discrete(breaks=c(1.5,4,6,8.5,11),labels=c(1.5,4,6,8.5,11))
 mean_rgr_0to12_plot <- mean_rgr_0to12_plot + ylab("rgr (sq. mm")
 mean_rgr_0to12_plot 
+
+#####################
+# Preliminary anova #
+# Y = rgr           #
+# Treatments:       #
+# species,          #
+# nutrients,        #
+# temperature,      #
+# day               #
+#####################
+rgr_anova <- aov(rgr ~ species*Temp*Nutr*day, data=data_rgr)
+summary(rgr_anova)
+TukeyHSD(rgr_anova)
+

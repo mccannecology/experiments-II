@@ -125,8 +125,8 @@ summary_data_area <- ddply(data_area, c("species","Temp","Nutr","day"), summaris
                            mean = mean(area),
                            sd = sd(area),
                            se = sd / sqrt(N) )
-head(summary_data_area)
 colnames(summary_data_area)[6] <- "area"
+head(summary_data_area)
 
 summary_data_area$Nutr <- factor(summary_data_area$Nutr , levels=c("low","med","high"))
 
@@ -135,17 +135,80 @@ summary_data_area$Nutr <- factor(summary_data_area$Nutr , levels=c("low","med","
 # by treatment combo  #
 # Use for plotting    #
 #######################
-# Area
+# rgr
 summary_data_rgr <- ddply(data_rgr, c("species","Temp","Nutr","day"), summarise, 
                            N = length(rgr),
                            mean = mean(rgr),
                            sd = sd(rgr),
                            se = sd / sqrt(N) )
-head(summary_data_rgr)
 colnames(summary_data_rgr)[6] <- "rgr"
+head(summary_data_rgr)
 
 summary_data_rgr$Nutr <- factor(summary_data_rgr$Nutr , levels=c("low","med","high"))
 
+#######################
+# Mean rgr_max        #
+# by treatment combo  #
+# Use for plotting    #
+#######################
+# rgr_max
+summary_data_rgr_max <- ddply(data_raw, c("species","Temp","Nutr"), summarise, 
+                          N = length(rgr_max),
+                          mean = mean(rgr_max),
+                          sd = sd(rgr_max),
+                          se = sd / sqrt(N) )
+colnames(summary_data_rgr_max)[5] <- "rgr_max"
+head(summary_data_rgr_max)
+summary_data_rgr_max$Nutr <- factor(summary_data_rgr_max$Nutr , levels=c("low","med","high"))
+
+#######################
+# Mean rgr_avg        #
+# by treatment combo  #
+# Use for plotting    #
+#######################
+# rgr_max
+summary_data_rgr_avg <- ddply(data_raw, c("species","Temp","Nutr"), summarise, 
+                              N = length(rgr_avg),
+                              mean = mean(rgr_avg),
+                              sd = sd(rgr_avg),
+                              se = sd / sqrt(N) )
+colnames(summary_data_rgr_avg)[5] <- "rgr_avg"
+head(summary_data_rgr_avg)
+summary_data_rgr_avg$Nutr <- factor(summary_data_rgr_avg$Nutr , levels=c("low","med","high"))
+
+##########################
+# Mean finalminusinitial #
+# by treatment combo     #
+# Use for plotting       #
+##########################
+# finalminusinitial
+# Area day 12 - Area day 0
+summary_data_finalminusinitial <- ddply(data_raw, c("species","Temp","Nutr"), summarise, 
+                          N = length(finalminusinitial),
+                          mean = mean(finalminusinitial),
+                          sd = sd(finalminusinitial),
+                          se = sd / sqrt(N) )
+colnames(summary_data_finalminusinitial)[5] <- "finalminusinitial"
+head(summary_data_finalminusinitial)
+
+summary_data_finalminusinitial$Nutr <- factor(summary_data_finalminusinitial$Nutr , levels=c("low","med","high"))
+
+###########################
+# Mean finaldivideinitial #
+# by treatment combo      #
+# Use for plotting        #
+###########################
+# finaldivideinitial
+# Area day 12 / Area day 0
+summary_data_finaldivideinitial <- ddply(data_raw, c("species","Temp","Nutr"), summarise, 
+                                        N = length(finaldivideinitial),
+                                        mean = mean(finaldivideinitial),
+                                        sd = sd(finaldivideinitial),
+                                        se = sd / sqrt(N) )
+colnames(summary_data_finaldivideinitial)[5] <- "finalminusinitial"
+head(summary_data_finaldivideinitial)
+
+summary_data_finaldivideinitial$Nutr <- factor(summary_data_finaldivideinitial$Nutr , levels=c("low","med","high"))
 
 
 
@@ -158,6 +221,7 @@ summary_data_rgr$Nutr <- factor(summary_data_rgr$Nutr , levels=c("low","med","hi
 
 
 
+################ old stuff done here 
 
 
 # calculate rgr 

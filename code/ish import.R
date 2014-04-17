@@ -29,6 +29,12 @@ data_raw$rgr6 <- (log(data_raw$area7)-log(data_raw$area5))/2
 data_raw$rgr8.5 <- (log(data_raw$area10)-log(data_raw$area7))/3
 data_raw$rgr11 <- (log(data_raw$area12)-log(data_raw$area10))/2
 
+# RGR max - within each replicate
+data_raw$rgr_max <- ave(data_raw$rgr1.5, data_raw$rgr4,data_raw$rgr6,data_raw$rgr8.5,data_raw$rgr11,FUN=max,na.rm=T)
+
+# RGR avg - within each replicate
+data_raw$rgr_avg <- ave(data_raw$rgr1.5, data_raw$rgr4,data_raw$rgr6,data_raw$rgr8.5,data_raw$rgr11,FUN=mean,na.rm=T)
+
 head(data_raw)
 
 ############################# 
@@ -55,6 +61,20 @@ head(data_area)
 # re-order my treatments so they go from low to high
 data_area$Nutr <- factor(data_area$Nutr , levels=c("low","med","high"))
 
+# remove unwanted columns 
+data_area$finalminusinitial <- NULL
+data_area$finaldivideinitial <- NULL
+data_area$rgr1.5 <- NULL
+data_area$rgr4 <- NULL
+data_area$rgr6 <- NULL
+data_area$rgr8.5 <- NULL
+data_area$rgr11 <- NULL
+data_area$rgr_max <- NULL
+data_area$rgr_avg <- NULL
+
+# check it out 
+head(data_area)
+
 ############################# 
 # reshape data              #
 # rgr data                  #
@@ -78,6 +98,21 @@ head(data_rgr)
 
 # re-order my treatments so they go from low to high
 data_rgr$Nutr <- factor(data_rgr$Nutr , levels=c("low","med","high"))
+
+# remove unwanted columns 
+data_rgr$finalminusinitial <- NULL
+data_rgr$finaldivideinitial <- NULL
+data_rgr$area0 <- NULL
+data_rgr$area3 <- NULL
+data_rgr$area5 <- NULL
+data_rgr$area7 <- NULL
+data_rgr$area10 <- NULL
+data_rgr$area12 <- NULL
+data_rgr$rgr_max <- NULL
+data_rgr$rgr_avg <- NULL
+
+# check it out 
+head(data_rgr)
 
 #######################
 # Mean area           #

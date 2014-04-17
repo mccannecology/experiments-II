@@ -45,10 +45,6 @@ mean_area_day12_plot
 # Y = final area - initial area #       # still need to finish this 
 # Raw data                      #
 #################################
-finalminusinitial <- subset(data_area$area, data_area$day == 7) - subset(data_area$area, data_area$day == 0)
-
-
-                                        # should I add this variable (above) to the data_area  and summary_data_area in the import script? 
 
 # colour
 raw_finalminusinitial_day12_plot <- ggplot(data_area, aes(x=species,y=area))

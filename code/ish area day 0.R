@@ -11,7 +11,7 @@ library(gridExtra)
 # check out the data that you will use 
 head(summary_data_area)
 
-# re-order my treatments so they go from monocultures to polycultures in alphabetical order 
+# re-order my treatments so they go from low to high
 summary_data_area$Nutr <- factor(summary_data_area$Nutr , levels=c("low","med","high"))
 
 ###########################

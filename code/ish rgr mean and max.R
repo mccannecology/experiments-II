@@ -19,7 +19,7 @@ head(summary_data_rgr)
 # colour
 raw_rgr_avg_plot <- ggplot(data_raw, aes(x=species,y=rgr_avg)) + geom_point() 
 raw_rgr_avg_plot <- raw_rgr_avg_plot + facet_grid(Nutr ~ Temp)
-raw_rgr_avg_plot <- raw_rgr_avg_plot + ylab("Max RGR")
+raw_rgr_avg_plot <- raw_rgr_avg_plot + ylab("Mean RGR")
 raw_rgr_avg_plot 
 
 ############
@@ -30,7 +30,7 @@ raw_rgr_avg_plot
 mean_rgr_avg_plot <- ggplot(summary_data_rgr_avg, aes(x=species,y=rgr_avg)) + geom_point() 
 mean_rgr_avg_plot <- mean_rgr_avg_plot + geom_errorbar(aes(ymin=rgr_avg-se, ymax=rgr_avg+se), width=0.1)
 mean_rgr_avg_plot <- mean_rgr_avg_plot + facet_grid(Nutr ~ Temp)
-mean_rgr_avg_plot <- mean_rgr_avg_plot + ylab("Max RGR")
+mean_rgr_avg_plot <- mean_rgr_avg_plot + ylab("Mean RGR")
 mean_rgr_avg_plot 
 
 #####################
@@ -56,7 +56,7 @@ TukeyHSD(rgr_avg_anova)
 # colour
 raw_rgr_max_plot <- ggplot(data_raw, aes(x=species,y=rgr_max)) + geom_point() 
 raw_rgr_max_plot <- raw_rgr_max_plot + facet_grid(Nutr ~ Temp)
-raw_rgr_max_plot <- raw_rgr_max_plot + ylab("Mean RGR")
+raw_rgr_max_plot <- raw_rgr_max_plot + ylab("Max RGR")
 raw_rgr_max_plot 
 
 ############
@@ -67,7 +67,7 @@ raw_rgr_max_plot
 mean_rgr_max_plot <- ggplot(summary_data_rgr_max, aes(x=species,y=rgr_max)) + geom_point() 
 mean_rgr_max_plot <- mean_rgr_max_plot + geom_errorbar(aes(ymin=rgr_max-se, ymax=rgr_max+se), width=0.1)
 mean_rgr_max_plot <- mean_rgr_max_plot + facet_grid(Nutr ~ Temp)
-mean_rgr_max_plot <- mean_rgr_max_plot + ylab("Mean RGR")
+mean_rgr_max_plot <- mean_rgr_max_plot + ylab("Max RGR")
 mean_rgr_max_plot 
 
 #####################

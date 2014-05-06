@@ -32,7 +32,161 @@ mean_area_day0_plot
 #####################
 # Y = Area day 0
 # Treatments: species, nutrients, temperature       
-area_day0_anova <- aov(area ~ species*Temp*Nutr, data=subset(summary_data_area, summary_data_area$day == 0))
+area_day0_anova <- aov(area0 ~ species*Temp*Nutr, data=data_raw)
 summary(area_day0_anova)
 TukeyHSD(area_day0_anova)
+
+#####################
+# Examine residuals #
+#####################
+hist(resid(area_day0_anova)) # plot a histogram 
+
+qqnorm(resid(area_day0_anova)) # QQ plot 
+qqline(resid(area_day0_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area_day0_anova)) # p-value = 
+
+
+
+
+
+######################################
+# ANOVA @ each treatment combination #
+######################################
+#####################
+# Low Nutr Low temp #
+#####################
+area0_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="low" & data$Temp=="18"))
+summary(area0_anova)
+TukeyHSD(area0_anova)
+
+hist(resid(area0_anova)) # plot a histogram 
+
+qqnorm(resid(area0_anova)) # QQ plot 
+qqline(resid(area0_anova)) 
+
+# nu18 hypothesis = sample came from a norma18y distributed population 
+shapiro.test(resid(area0_anova)) # p-value =  0.4188
+
+###############
+# Med Nutr Low Temp #
+###############
+area0_M18_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="med" & data$Temp=="18"))
+summary(area0_M18_anova)
+TukeyHSD(area0_M18_anova)
+
+hist(resid(area0_M18_anova)) # plot a histogram 
+
+qqnorm(resid(area0_M18_anova)) # QQ plot 
+qqline(resid(area0_M18_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area0_M18_anova)) # p-value =  0.03546
+
+################
+# High Nutr Low Temp #
+################
+area0_H18_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="high" & data$Temp=="18"))
+summary(area0_H18_anova)
+TukeyHSD(area0_H18_anova)
+
+hist(resid(area0_H18_anova)) # plot a histogram 
+
+qqnorm(resid(area0_H18_anova)) # QQ plot 
+qqline(resid(area0_H18_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area0_H18_anova)) # p-value =  0.426
+
+###############
+# Low Nutr Med Temp #
+###############
+area0_L24_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="low" & data$Temp=="24"))
+summary(area0_L24_anova)
+TukeyHSD(area0_L24_anova)
+
+hist(resid(area0_L24_anova)) # plot a histogram 
+
+qqnorm(resid(area0_L24_anova)) # QQ plot 
+qqline(resid(area0_L24_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area0_L24_anova)) # p-value =  0.3333
+
+################
+# Low Nutr High Temp #
+################
+area0_L30_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="low" & data$Temp=="30"))
+summary(area0_L30_anova)
+TukeyHSD(area0_L30_anova)
+
+hist(resid(area0_L30_anova)) # plot a histogram 
+
+qqnorm(resid(area0_L30_anova)) # QQ plot 
+qqline(resid(area0_L30_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area0_L30_anova)) # p-value =  0.005253
+
+###############
+# Med Nutr Med Temp #
+###############
+area0_M24_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="med" & data$Temp=="24"))
+summary(area0_M24_anova)
+TukeyHSD(area0_M24_anova)
+
+hist(resid(area0_M24_anova)) # plot a histogram 
+
+qqnorm(resid(area0_M24_anova)) # QQ plot 
+qqline(resid(area0_M24_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area0_M24_anova)) # p-value =  0.06162
+
+#################
+# High Nutr High Temp #
+#################
+area0_H30_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="high" & data$Temp=="30"))
+summary(area0_H30_anova)
+TukeyHSD(area0_H30_anova)
+
+hist(resid(area0_H30_anova)) # plot a histogram 
+
+qqnorm(resid(area0_H30_anova)) # QQ plot 
+qqline(resid(area0_H30_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area0_H30_anova)) # p-value =  0.04204
+
+################
+# Med Nutr High Temp #
+################
+area0_M30_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="med" & data$Temp=="30"))
+summary(area0_M30_anova)
+TukeyHSD(area0_M30_anova)
+
+hist(resid(area0_M30_anova)) # plot a histogram 
+
+qqnorm(resid(area0_M30_anova)) # QQ plot 
+qqline(resid(area0_M30_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area0_M30_anova)) # p-value =  0.7518
+
+################
+# High Nutr Med Temp #
+################
+area0_H24_anova <- aov(area0 ~ species, data=subset(data_raw, data$Nutr=="high" & data$Temp=="24"))
+summary(area0_H24_anova)
+TukeyHSD(area0_H24_anova)
+
+hist(resid(area0_H24_anova)) # plot a histogram 
+
+qqnorm(resid(area0_H24_anova)) # QQ plot 
+qqline(resid(area0_H24_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(area0_H24_anova)) # p-value =  0.5111
+
 

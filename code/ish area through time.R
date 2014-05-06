@@ -33,16 +33,4 @@ mean_area_0to12_plot <- mean_area_0to12_plot + scale_x_discrete(breaks=c(0,3,5,7
 mean_area_0to12_plot <- mean_area_0to12_plot + ylab("area (sq. mm")
 mean_area_0to12_plot 
 
-#####################
-# Preliminary anova #
-# Y = Area          #
-# Treatments:       #
-# species,          #
-# nutrients,        #
-# temperature,      #
-# day               #
-#####################
-area_anova <- aov(area ~ species*Temp*Nutr*day, data=data_area)
-summary(area_anova)
-TukeyHSD(area_anova)
 

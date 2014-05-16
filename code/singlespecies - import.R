@@ -13,6 +13,21 @@ data_raw <- read.csv("singlespecies_area_raw.csv") # import area data
 # add a new variable that combines plate and well to use as an ID 
 data_raw$id <- paste(data_raw$Plate,data_raw$Row,data_raw$col,sep="")
 
+# move turion data to its own data frame 
+data_turion <- cbind(data_raw[,1:6], data_raw[,20:26])
+head(data_turion)
+
+# rermove turion data from data_raw
+data_raw$turions3 <- NULL 
+data_raw$turions5 <- NULL 
+data_raw$turions7 <- NULL 
+data_raw$turions10 <- NULL 
+data_raw$turions12 <- NULL 
+data_raw$turionsTOT<- NULL 
+head(data_raw)
+
+
+
 #############################################
 # add additional variables to the dataframe #  
 #############################################

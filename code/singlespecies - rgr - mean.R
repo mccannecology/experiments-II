@@ -31,10 +31,10 @@ ggsave(filename = "mean_avgRGR_plot.pdf", mean_avgRGR_plot, height=11, width=8)
 # Y = avgRGR        #
 # Treatments:       #
 # species,          #
-# nitrogen,         #
-# phosphorus,       #
+# Nutr,         #
+# Temp,       #
 #####################
-avgRGR_anova <- aov(avgRGR ~ species*nitrogen*phosphorus, data=data)
+avgRGR_anova <- aov(avgRGR ~ species*Nutr*Temp, data=data)
 summary(avgRGR_anova)
 posthoc_avgRGR_anova <- TukeyHSD(avgRGR_anova)
 posthoc_avgRGR_anova
@@ -64,7 +64,7 @@ shapiro.test(resid(avgRGR_anova)) # p-value = 0.01016 # Residuals are not noraml
 ################################
 # try a log + 1 transformation #
 ################################
-avgRGR_anova_logx1 <- aov(log(avgRGR+1) ~ species*nitrogen*phosphorus, data=data)
+avgRGR_anova_logx1 <- aov(log(avgRGR+1) ~ species*Nutr*Temp, data=data)
 summary(avgRGR_anova_logx1)
 posthoc_avgRGR_anova_logx1 <- TukeyHSD(avgRGR_anova_logx1)
 posthoc_avgRGR_anova_logx1
@@ -94,7 +94,7 @@ shapiro.test(resid(avgRGR_anova_logx1)) # p-value = 0.00218
 ################################
 # try a sqrt + 1 transformation #
 ################################
-avgRGR_anova_sqrt1 <- aov(sqrt(avgRGR+1) ~ species*nitrogen*phosphorus, data=data)
+avgRGR_anova_sqrt1 <- aov(sqrt(avgRGR+1) ~ species*Nutr*Temp, data=data)
 summary(avgRGR_anova_sqrt1)
 posthoc_avgRGR_anova_sqrt1 <- TukeyHSD(avgRGR_anova_sqrt1)
 posthoc_avgRGR_anova_sqrt1
@@ -132,9 +132,9 @@ shapiro.test(resid(avgRGR_anova_sqrt1)) # p-value = 0.005152
 # ANOVA @ each treatment combination #
 ######################################
 ###############
-# Low N Low P #
+# Low Nutr Low Temp #
 ###############
-avgRGR_LL_anova <- aov(avgRGR~ species, data=subset(data, data$nitrogen=="lowN" & data$phosphorus=="lowP"))
+avgRGR_LL_anova <- aov(avgRGR~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="18"))
 summary(avgRGR_LL_anova)
 TukeyHSD(avgRGR_LL_anova)
 
@@ -144,12 +144,34 @@ qqnorm(resid(avgRGR_LL_anova)) # QQ plot
 qqline(resid(avgRGR_LL_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(avgRGR_LL_anova)) # p-value =  0.756
+shapiro.test(resid(avgRGR_LL_anova)) # p-value =  0.01705
+
+# try a power transformation 
+library(car)
+powerTransform(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="18"))
+power <- 0.5835013 
+
+# add the power transformation
+data_raw$power_avgRGR <- ((data_raw$avgRGR)^power - 1) / power 
+
+power_avgRGR_LM_anova <- aov(power_avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="18"))
+summary(power_avgRGR_LM_anova)
+posthoc_power_avgRGR_LM_anova <- TukeyHSD(power_avgRGR_LM_anova)
+posthoc_power_avgRGR_LM_anova
+
+# Examine residuals 
+hist(resid(power_avgRGR_LM_anova)) # plot a histogram 
+
+qqnorm(resid(power_avgRGR_LM_anova)) # QQ plot 
+qqline(resid(power_avgRGR_LM_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(power_avgRGR_LM_anova)) # p-value = 0.09846
 
 ###############
-# Med N Low P #
+# Med Nutr Low Temp #
 ###############
-avgRGR_ML_anova <- aov(avgRGR ~ species, data=subset(data, data$nitrogen=="medN" & data$phosphorus=="lowP"))
+avgRGR_ML_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="18"))
 summary(avgRGR_ML_anova)
 TukeyHSD(avgRGR_ML_anova)
 
@@ -159,12 +181,12 @@ qqnorm(resid(avgRGR_ML_anova)) # QQ plot
 qqline(resid(avgRGR_ML_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(avgRGR_ML_anova)) # p-value =  0.3127
+shapiro.test(resid(avgRGR_ML_anova)) # p-value =  0.2524
 
 ################
-# High N Low P #
+# High Nutr Low Temp #
 ################
-avgRGR_HL_anova <- aov(avgRGR ~ species, data=subset(data, data$nitrogen=="highN" & data$phosphorus=="lowP"))
+avgRGR_HL_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
 summary(avgRGR_HL_anova)
 TukeyHSD(avgRGR_HL_anova)
 
@@ -174,12 +196,12 @@ qqnorm(resid(avgRGR_HL_anova)) # QQ plot
 qqline(resid(avgRGR_HL_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(avgRGR_HL_anova)) # p-value =  0.6324
+shapiro.test(resid(avgRGR_HL_anova)) # p-value =  0.3119
 
 ###############
-# Low N Med P #
+# Low Nutr Med Temp #
 ###############
-avgRGR_LM_anova <- aov(avgRGR ~ species, data=subset(data, data$nitrogen=="lowN" & data$phosphorus=="medP"))
+avgRGR_LM_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="24"))
 summary(avgRGR_LM_anova)
 TukeyHSD(avgRGR_LM_anova)
 
@@ -189,12 +211,12 @@ qqnorm(resid(avgRGR_LM_anova)) # QQ plot
 qqline(resid(avgRGR_LM_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(avgRGR_LM_anova)) # p-value =  0.9212
+shapiro.test(resid(avgRGR_LM_anova)) # p-value =  0.7246
 
-################
-# Low N High P #
-################
-avgRGR_LH_anova <- aov(avgRGR ~ species, data=subset(data, data$nitrogen=="lowN" & data$phosphorus=="highP"))
+######################
+# Low Nutr High Temp #
+######################
+avgRGR_LH_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
 summary(avgRGR_LH_anova)
 TukeyHSD(avgRGR_LH_anova)
 
@@ -204,12 +226,25 @@ qqnorm(resid(avgRGR_LH_anova)) # QQ plot
 qqline(resid(avgRGR_LH_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(avgRGR_LH_anova)) # p-value =  0.2664
+shapiro.test(resid(avgRGR_LH_anova)) # p-value =  0.0007772
+
+# try a sqrt + 1 transformation
+sqrt_avgRGR_LH_anova <- aov(sqrt(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
+summary(sqrt_avgRGR_LH_anova)
+TukeyHSD(sqrt_avgRGR_LH_anova)
+
+hist(resid(sqrt_avgRGR_LH_anova)) # plot a histogram 
+
+qqnorm(resid(sqrt_avgRGR_LH_anova)) # QQ plot 
+qqline(resid(sqrt_avgRGR_LH_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(sqrt_avgRGR_LH_anova)) # p-value =  0.0005892
 
 ###############
-# Med N Med P #
+# Med Nutr Med Temp #
 ###############
-avgRGR_MM_anova <- aov(avgRGR ~ species, data=subset(data, data$nitrogen=="medN" & data$phosphorus=="medP"))
+avgRGR_MM_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="24"))
 summary(avgRGR_MM_anova)
 TukeyHSD(avgRGR_MM_anova)
 
@@ -222,7 +257,7 @@ qqline(resid(avgRGR_MM_anova))
 shapiro.test(resid(avgRGR_MM_anova)) # p-value =  0.01644
 
 # log x+1 transformation
-logx1_avgRGR_MM_anova <- aov(log(avgRGR+1) ~ species, data=subset(data, data$nitrogen=="medN" & data$phosphorus=="medP"))
+logx1_avgRGR_MM_anova <- aov(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="24"))
 summary(logx1_avgRGR_MM_anova)
 TukeyHSD(logx1_avgRGR_MM_anova)
 
@@ -236,9 +271,9 @@ shapiro.test(resid(logx1_avgRGR_MM_anova)) # p-value =  0.01623
 
 
 #################
-# High N High P #
+# High Nutr High Temp #
 #################
-avgRGR_HH_anova <- aov(avgRGR ~ species, data=subset(data, data$nitrogen=="highN" & data$phosphorus=="highP"))
+avgRGR_HH_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="30"))
 summary(avgRGR_HH_anova)
 TukeyHSD(avgRGR_HH_anova)
 
@@ -251,9 +286,9 @@ qqline(resid(avgRGR_HH_anova))
 shapiro.test(resid(avgRGR_HH_anova)) # p-value =  0.518
 
 ################
-# Med N High P #
+# Med Nutr High Temp #
 ################
-avgRGR_MH_anova <- aov(avgRGR ~ species, data=subset(data, data$nitrogen=="medN" & data$phosphorus=="highP"))
+avgRGR_MH_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="30"))
 summary(avgRGR_MH_anova)
 TukeyHSD(avgRGR_MH_anova)
 
@@ -266,9 +301,9 @@ qqline(resid(avgRGR_MH_anova))
 shapiro.test(resid(avgRGR_MH_anova)) # p-value =  0.05815
 
 ################
-# High N Med P #
+# High Nutr Med Temp #
 ################
-avgRGR_HM_anova <- aov(avgRGR ~ species, data=subset(data, data$nitrogen=="highN" & data$phosphorus=="medP"))
+avgRGR_HM_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="24"))
 summary(avgRGR_HM_anova)
 TukeyHSD(avgRGR_HM_anova)
 

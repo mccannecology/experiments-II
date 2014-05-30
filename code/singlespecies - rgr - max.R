@@ -42,6 +42,7 @@ posthoc_maxRGR_anova
 threeway <- posthoc_maxRGR_anova[[7]]
 significant <- subset(threeway, threeway[,4]<=0.050) # significant comparisons 
 nonsignif <- subset(threeway, threeway[,4]>0.050) # non-significant comparisons 
+significant
 
 #####################
 # Examine residuals #
@@ -58,6 +59,12 @@ qqline(resid(maxRGR_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_anova)) # p-value = 0.0261 # Residuals are not noramlly distributed 
 
+#################################
+# other parameteric assumptions #
+#################################
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(data_raw$maxRGR ~ data_raw$species * data_raw$Temp * data_raw$Nutr) # p-value = 0.9483
 
 
 #################################
@@ -215,6 +222,10 @@ qqline(resid(maxRGR_LL_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_LL_anova)) # p-value =  0.09561
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(maxRGR ~ species * Temp * Nutr, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="18")) # p-value = 0.7428
+
 ###############
 # Med Nutr Low Temp #
 ###############
@@ -230,6 +241,11 @@ qqline(resid(maxRGR_ML_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_ML_anova)) # p-value =  0.9133
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(maxRGR ~ species * Temp * Nutr, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="18")) # p-value = 0.3841
+
+
 ################
 # High Nutr Low Temp #
 ################
@@ -244,6 +260,53 @@ qqline(resid(maxRGR_HL_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_HL_anova)) # p-value =  0.7315
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(maxRGR ~ species * Temp * Nutr, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18")) # p-value = 0.01982
+
+# log x + 1 transformation
+log_maxRGR_HL_anova <- aov(log(maxRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+summary(log_maxRGR_HL_anova)
+TukeyHSD(log_maxRGR_HL_anova)
+
+hist(resid(log_maxRGR_HL_anova)) # plot a histogram 
+
+qqnorm(resid(log_maxRGR_HL_anova)) # QQ plot 
+qqline(resid(log_maxRGR_HL_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(log_maxRGR_HL_anova)) # p-value =  0.6752
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(log(maxRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18")) # p-value = 0.01754
+
+# try a power transformation 
+library(car)
+powerTransform(maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+power <- 2.731675 
+
+# add the power transformation
+data_raw$power_maxRGR <- ((data_raw$maxRGR)^power - 1) / power 
+
+power_maxRGR_HL_anova <- aov(power_maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+summary(power_maxRGR_HL_anova)
+posthoc_power_maxRGR_HL_anova <- TukeyHSD(power_maxRGR_HL_anova)
+posthoc_power_maxRGR_HL_anova
+
+# Examine residuals 
+hist(resid(power_maxRGR_HL_anova)) # plot a histogram 
+
+qqnorm(resid(power_maxRGR_HL_anova)) # QQ plot 
+qqline(resid(power_maxRGR_HL_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(power_maxRGR_HL_anova)) # p-value = 0.7904
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18")) # p-value = 0.04213
 
 ###############
 # Low Nutr Med Temp #
@@ -281,6 +344,11 @@ qqline(resid(power_maxRGR_LM_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(power_maxRGR_LM_anova)) # p-value = 0.09496
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18")) # p-value = 0.01754
+
 
 ################
 # Low Nutr High Temp #

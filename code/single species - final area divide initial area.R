@@ -44,6 +44,11 @@ qqline(resid(area_final_divide_initial_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(area_final_divide_initial_anova)) # p-value = 1.395e-07 
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(data_raw$final_divide_initial ~ data_raw$species * data_raw$Temp * data_raw$Nutr) # p-value = 0.01662
+
+
 #################################
 # transform and re-do the anova #
 #################################

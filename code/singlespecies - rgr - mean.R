@@ -9,7 +9,7 @@
 library(ggplot2)
 
 # check out the data you will use
-head(data_rgr)
+head(data_raw)
 head(summary_data_avgRGR)
 
 ############
@@ -34,7 +34,7 @@ ggsave(filename = "mean_avgRGR_plot.pdf", mean_avgRGR_plot, height=11, width=8)
 # Nutr,         #
 # Temp,       #
 #####################
-avgRGR_anova <- aov(avgRGR ~ species*Nutr*Temp, data=data)
+avgRGR_anova <- aov(avgRGR ~ species*Nutr*Temp, data=data_raw)
 summary(avgRGR_anova)
 posthoc_avgRGR_anova <- TukeyHSD(avgRGR_anova)
 posthoc_avgRGR_anova
@@ -42,9 +42,7 @@ threeway <- posthoc_avgRGR_anova[[7]]
 significant <- subset(threeway, threeway[,4]<=0.050) # significant comparisons 
 nonsignif <- subset(threeway, threeway[,4]>0.050) # non-significant comparisons 
 
-#####################
 # Examine residuals #
-#####################
 # plot a histogram 
 # looks normal-ish
 hist(resid(avgRGR_anova))
@@ -57,6 +55,10 @@ qqline(resid(avgRGR_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(avgRGR_anova)) # p-value = 0.01016 # Residuals are not noramlly distributed 
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(data_raw$avgRGR ~ data_raw$species * data_raw$Temp * data_raw$Nutr) # p-value = 0.2016
+
 
 #################################
 # transform and re-do the anova #
@@ -64,7 +66,7 @@ shapiro.test(resid(avgRGR_anova)) # p-value = 0.01016 # Residuals are not noraml
 ################################
 # try a log + 1 transformation #
 ################################
-avgRGR_anova_logx1 <- aov(log(avgRGR+1) ~ species*Nutr*Temp, data=data)
+avgRGR_anova_logx1 <- aov(log(avgRGR+1) ~ species*Nutr*Temp, data=data_raw)
 summary(avgRGR_anova_logx1)
 posthoc_avgRGR_anova_logx1 <- TukeyHSD(avgRGR_anova_logx1)
 posthoc_avgRGR_anova_logx1
@@ -94,7 +96,7 @@ shapiro.test(resid(avgRGR_anova_logx1)) # p-value = 0.00218
 ################################
 # try a sqrt + 1 transformation #
 ################################
-avgRGR_anova_sqrt1 <- aov(sqrt(avgRGR+1) ~ species*Nutr*Temp, data=data)
+avgRGR_anova_sqrt1 <- aov(sqrt(avgRGR+1) ~ species*Nutr*Temp, data=data_raw)
 summary(avgRGR_anova_sqrt1)
 posthoc_avgRGR_anova_sqrt1 <- TukeyHSD(avgRGR_anova_sqrt1)
 posthoc_avgRGR_anova_sqrt1

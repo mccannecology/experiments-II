@@ -219,6 +219,12 @@ shapiro.test(resid(area_final_divide_initial_H18_anova)) # p-value =  0.3485
 # null hypothesis = population variances are equal
 bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
 
+# levene's test: homogeneity of variance 
+# null hypothesis: equal variance 
+library(car)
+leveneTest(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+
+
 ######################
 # Low Nutr Med Temp  #
 ######################
@@ -255,7 +261,12 @@ shapiro.test(resid(area_final_divide_initial_L30_anova)) # p-value =  0.3845
 
 # Bartlett Test of Homogeneity of Variances
 # null hypothesis = population variances are equal
-bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
+bartlett.test(final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
+
+# levene's test: homogeneity of variance 
+# null hypothesis: equal variance 
+library(car)
+leveneTest(final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
 
 ######################
 # Med Nutr Med Temp  #
@@ -354,3 +365,8 @@ shapiro.test(resid(area_final_divide_initial_H24_anova)) # p-value =  0.6954
 # Bartlett Test of Homogeneity of Variances
 # null hypothesis = population variances are equal
 bartlett.test(final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="24"))
+
+# levene's test: homogeneity of variance 
+# null hypothesis: equal variance 
+library(car)
+leveneTest(final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="24"))

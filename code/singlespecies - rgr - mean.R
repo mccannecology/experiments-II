@@ -287,6 +287,11 @@ shapiro.test(resid(log_avgRGR_LH_anova)) # p-value =  0.000445
 # null hypothesis = population variances are equal
 bartlett.test(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30")) # p = 0.03257
 
+# levene's test: homogeneity of variance 
+# null hypothesis: equal variance 
+library(car)
+leveneTest(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
+
 
 ###############
 # Med Nutr Med Temp #

@@ -308,6 +308,11 @@ shapiro.test(resid(power_maxRGR_HL_anova)) # p-value = 0.7904
 # null hypothesis = population variances are equal
 bartlett.test(power_maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18")) # p-value = 0.04213
 
+# levene's test: homogeneity of variance 
+# null hypothesis: equal variance 
+library(car)
+leveneTest(power_maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18")) 
+
 ###############
 # Low Nutr Med Temp #
 ###############
@@ -347,8 +352,12 @@ shapiro.test(resid(power_maxRGR_LM_anova)) # p-value = 0.09496
 
 # Bartlett Test of Homogeneity of Variances
 # null hypothesis = population variances are equal
-bartlett.test(power_maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18")) # p-value = 0.01754
+bartlett.test(power_maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="24")) # p-value = 0.01754
 
+# levene's test: homogeneity of variance 
+# null hypothesis: equal variance 
+library(car)
+leveneTest(power_maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="24")) 
 
 ################
 # Low Nutr High Temp #
@@ -426,6 +435,11 @@ shapiro.test(resid(maxRGR_MH_anova)) # p-value =  0.08134
 # Bartlett Test of Homogeneity of Variances
 # null hypothesis = population variances are equal
 bartlett.test(maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="30"))
+
+# levene's test: homogeneity of variance 
+# null hypothesis: equal variance 
+library(car)
+leveneTest(maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="30")) 
 
 ################
 # High Nutr Med Temp #

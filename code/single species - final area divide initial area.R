@@ -177,6 +177,10 @@ qqline(resid(power_area_final_divide_initial_L18_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(power_area_final_divide_initial_L18_anova)) # p-value = 0.04694
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="18")) 
+
 ######################
 # Med Nutr Low Temp  #
 ######################
@@ -191,6 +195,10 @@ qqline(resid(area_final_divide_initial_M18_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(area_final_divide_initial_M18_anova)) # p-value =  0.1601
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="18"))
 
 ######################
 # High Nutr Low Temp #
@@ -207,6 +215,10 @@ qqline(resid(area_final_divide_initial_H18_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(area_final_divide_initial_H18_anova)) # p-value =  0.3485
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+
 ######################
 # Low Nutr Med Temp  #
 ######################
@@ -222,6 +234,10 @@ qqline(resid(area_final_divide_initial_L24_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(area_final_divide_initial_L24_anova)) # p-value =  0.1932
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="24"))
+
 ######################
 # Low Nutr High Temp #
 ######################
@@ -236,6 +252,10 @@ qqline(resid(area_final_divide_initial_L30_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(area_final_divide_initial_L30_anova)) # p-value =  0.3845
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
 
 ######################
 # Med Nutr Med Temp  #
@@ -274,6 +294,10 @@ qqline(resid(power_area_final_divide_initial_M24_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(power_area_final_divide_initial_M24_anova)) # p-value = 0.233
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="24"))
+
 #######################
 # High Nutr High Temp #
 #######################
@@ -288,6 +312,10 @@ qqline(resid(area_final_divide_initial_H30_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(area_final_divide_initial_H30_anova)) # p-value =  0.06673
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="30"))
 
 ######################
 # Med Nutr High Temp #
@@ -304,6 +332,10 @@ qqline(resid(area_final_divide_initial_M30_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(area_final_divide_initial_M30_anova)) # p-value =  0.09426
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="30"))
+
 ######################
 # High Nutr Med Temp #
 ######################
@@ -318,3 +350,7 @@ qqline(resid(area_final_divide_initial_H24_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(area_final_divide_initial_H24_anova)) # p-value =  0.6954
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="24"))

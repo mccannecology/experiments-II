@@ -365,6 +365,10 @@ qqline(resid(maxRGR_LH_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_LH_anova)) # p-value =  0.4481
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30")) # p-value =  0.5456
+
 ###############
 # Med Nutr Med Temp #
 ###############
@@ -379,6 +383,11 @@ qqline(resid(maxRGR_MM_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_MM_anova)) # p-value =   0.42
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="24")) # p = 0.3988
+
 
 #################
 # High Nutr High Temp #
@@ -395,6 +404,10 @@ qqline(resid(maxRGR_HH_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_HH_anova)) # p-value =  0.9693
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="30"))
+
 ################
 # Med Nutr High Temp #
 ################
@@ -410,6 +423,10 @@ qqline(resid(maxRGR_MH_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_MH_anova)) # p-value =  0.08134
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="30"))
+
 ################
 # High Nutr Med Temp #
 ################
@@ -424,3 +441,8 @@ qqline(resid(maxRGR_HM_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(maxRGR_HM_anova)) # p-value =  0.1852
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(maxRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="24"))
+

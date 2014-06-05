@@ -170,6 +170,10 @@ qqline(resid(power_avgRGR_LM_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(power_avgRGR_LM_anova)) # p-value = 0.09846
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="18"))
+
 ###############
 # Med Nutr Low Temp #
 ###############
@@ -184,6 +188,10 @@ qqline(resid(avgRGR_ML_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(avgRGR_ML_anova)) # p-value =  0.2524
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="18"))
 
 ################
 # High Nutr Low Temp #
@@ -200,6 +208,10 @@ qqline(resid(avgRGR_HL_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(avgRGR_HL_anova)) # p-value =  0.3119
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+
 ###############
 # Low Nutr Med Temp #
 ###############
@@ -215,12 +227,20 @@ qqline(resid(avgRGR_LM_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(avgRGR_LM_anova)) # p-value =  0.7246
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="24"))
+
+
 ######################
 # Low Nutr High Temp #
 ######################
 avgRGR_LH_anova <- aov(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
 summary(avgRGR_LH_anova)
 TukeyHSD(avgRGR_LH_anova)
+
+# the data don't look too crazy !
+hist(subset(data_raw$avgRGR, data_raw$Nutr=="low" & data_raw$Temp=="30"))
 
 hist(resid(avgRGR_LH_anova)) # plot a histogram 
 
@@ -242,6 +262,31 @@ qqline(resid(sqrt_avgRGR_LH_anova))
 
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(sqrt_avgRGR_LH_anova)) # p-value =  0.0005892
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(sqrt(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30")) # p = 0.03626
+
+
+# try a logx x + 1 transformation
+log_avgRGR_LH_anova <- aov(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
+summary(log_avgRGR_LH_anova)
+TukeyHSD(sqrt_avgRGR_LH_anova)
+
+hist(subset(log(data_raw$avgRGR+1), data_raw$Nutr=="low" & data_raw$Temp=="30"))
+
+hist(resid(log_avgRGR_LH_anova)) # plot a histogram 
+
+qqnorm(resid(log_avgRGR_LH_anova)) # QQ plot 
+qqline(resid(log_avgRGR_LH_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(log_avgRGR_LH_anova)) # p-value =  0.000445
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30")) # p = 0.03257
+
 
 ###############
 # Med Nutr Med Temp #
@@ -269,8 +314,11 @@ qqnorm(resid(logx1_avgRGR_MM_anova)) # QQ plot
 qqline(resid(logx1_avgRGR_MM_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(logx1_avgRGR_MM_anova)) # p-value =  0.01623
+shapiro.test(resid(logx1_avgRGR_MM_anova)) # p-value =  0.2381
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="24")) # 0.1064
 
 #################
 # High Nutr High Temp #
@@ -285,7 +333,11 @@ qqnorm(resid(avgRGR_HH_anova)) # QQ plot
 qqline(resid(avgRGR_HH_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(avgRGR_HH_anova)) # p-value =  0.518
+shapiro.test(resid(avgRGR_HH_anova)) # p-value =  0.8861
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="30"))
 
 ################
 # Med Nutr High Temp #
@@ -302,6 +354,10 @@ qqline(resid(avgRGR_MH_anova))
 # null hypothesis = sample came from a normally distributed population 
 shapiro.test(resid(avgRGR_MH_anova)) # p-value =  0.05815
 
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="med" & data_raw$Temp=="30"))
+
 ################
 # High Nutr Med Temp #
 ################
@@ -315,6 +371,10 @@ qqnorm(resid(avgRGR_HM_anova)) # QQ plot
 qqline(resid(avgRGR_HM_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(avgRGR_HM_anova)) # p-value =  0.9975
+shapiro.test(resid(avgRGR_HM_anova)) # p-value =  0.2611
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="24"))
 
 

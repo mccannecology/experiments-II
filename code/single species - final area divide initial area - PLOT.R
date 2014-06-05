@@ -38,9 +38,9 @@ mean_final_divide_initial_plot <- mean_final_divide_initial_plot + geom_errorbar
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + facet_grid(Temp ~ Nutr, labeller=labeller_function)
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + ylab("Average Relative Growth Rate")
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + xlab("Species")
-mean_final_divide_initial_plot <- mean_final_divide_initial_plot + ylim(0,0.4)
+mean_final_divide_initial_plot <- mean_final_divide_initial_plot + ylim(0,17)
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + theme_bw(base_size=18)
-mean_final_divide_initial_plot <- mean_final_divide_initial_plot + geom_text(data=summary_data_final_divide_initial,aes(x=species, y=final_divide_initial+se+0.025,label=label))
+mean_final_divide_initial_plot <- mean_final_divide_initial_plot + geom_text(data=summary_data_final_divide_initial,aes(x=species, y=final_divide_initial+se+1,label=label))
 mean_final_divide_initial_plot 
 
 # save it 

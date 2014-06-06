@@ -10,6 +10,9 @@ library(plyr)
 
 data_raw <- read.csv("singlespecies_area_raw.csv") # import area data 
 
+# remove outliers 
+data_raw <- data_raw[data_raw$outlier==0,]
+
 # add a new variable that combines plate and well to use as an ID 
 data_raw$id <- paste(data_raw$plate,data_raw$row,data_raw$col,sep="")
 

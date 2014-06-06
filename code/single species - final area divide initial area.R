@@ -224,6 +224,36 @@ bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_r
 library(car)
 leveneTest(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
 
+# try a power transformation 
+library(car)
+powerTransform(final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+power <- 0.8005069
+
+# add the power transformation of stand
+data_raw$power_final_divide_initial <- ((data_raw$final_divide_initial)^power - 1) / power 
+
+power_area_final_divide_initial_H18_anova <- aov(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+summary(power_area_final_divide_initial_H18_anova)
+TukeyHSD(area_final_divide_initial_H18_anova)
+
+hist(resid(power_area_final_divide_initial_H18_anova)) # plot a histogram 
+
+qqnorm(resid(power_area_final_divide_initial_H18_anova)) # QQ plot 
+qqline(resid(power_area_final_divide_initial_H18_anova)) 
+
+# null hypothesis = sample came from a normally distributed population 
+shapiro.test(resid(power_area_final_divide_initial_H18_anova)) # p-value =  0.4353
+
+# Bartlett Test of Homogeneity of Variances
+# null hypothesis = population variances are equal
+bartlett.test(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+
+# levene's test: homogeneity of variance 
+# null hypothesis: equal variance 
+library(car)
+leveneTest(power_final_divide_initial ~ species, data=subset(data_raw, data_raw$Nutr=="high" & data_raw$Temp=="18"))
+
+
 
 ######################
 # Low Nutr Med Temp  #
@@ -257,7 +287,7 @@ qqnorm(resid(area_final_divide_initial_L30_anova)) # QQ plot
 qqline(resid(area_final_divide_initial_L30_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(area_final_divide_initial_L30_anova)) # p-value =  0.3845
+shapiro.test(resid(area_final_divide_initial_L30_anova)) # p-value =  0.2865
 
 # Bartlett Test of Homogeneity of Variances
 # null hypothesis = population variances are equal

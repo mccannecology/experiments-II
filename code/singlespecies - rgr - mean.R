@@ -248,50 +248,11 @@ qqnorm(resid(avgRGR_LH_anova)) # QQ plot
 qqline(resid(avgRGR_LH_anova)) 
 
 # null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(avgRGR_LH_anova)) # p-value =  0.0007772
-
-# try a sqrt + 1 transformation
-sqrt_avgRGR_LH_anova <- aov(sqrt(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
-summary(sqrt_avgRGR_LH_anova)
-TukeyHSD(sqrt_avgRGR_LH_anova)
-
-hist(resid(sqrt_avgRGR_LH_anova)) # plot a histogram 
-
-qqnorm(resid(sqrt_avgRGR_LH_anova)) # QQ plot 
-qqline(resid(sqrt_avgRGR_LH_anova)) 
-
-# null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(sqrt_avgRGR_LH_anova)) # p-value =  0.0005892
+shapiro.test(resid(avgRGR_LH_anova)) # p-value =  0.7353
 
 # Bartlett Test of Homogeneity of Variances
 # null hypothesis = population variances are equal
-bartlett.test(sqrt(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30")) # p = 0.03626
-
-
-# try a logx x + 1 transformation
-log_avgRGR_LH_anova <- aov(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
-summary(log_avgRGR_LH_anova)
-TukeyHSD(sqrt_avgRGR_LH_anova)
-
-hist(subset(log(data_raw$avgRGR+1), data_raw$Nutr=="low" & data_raw$Temp=="30"))
-
-hist(resid(log_avgRGR_LH_anova)) # plot a histogram 
-
-qqnorm(resid(log_avgRGR_LH_anova)) # QQ plot 
-qqline(resid(log_avgRGR_LH_anova)) 
-
-# null hypothesis = sample came from a normally distributed population 
-shapiro.test(resid(log_avgRGR_LH_anova)) # p-value =  0.000445
-
-# Bartlett Test of Homogeneity of Variances
-# null hypothesis = population variances are equal
-bartlett.test(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30")) # p = 0.03257
-
-# levene's test: homogeneity of variance 
-# null hypothesis: equal variance 
-library(car)
-leveneTest(log(avgRGR+1) ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30"))
-
+bartlett.test(avgRGR ~ species, data=subset(data_raw, data_raw$Nutr=="low" & data_raw$Temp=="30")) # 0.8523
 
 ###############
 # Med Nutr Med Temp #

@@ -36,7 +36,7 @@ labeller_function <- function(variable,value){
 mean_final_divide_initial_plot <- ggplot(summary_data_final_divide_initial, aes(x=species,y=final_divide_initial)) + geom_point() 
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + geom_errorbar(aes(ymin=final_divide_initial-se, ymax=final_divide_initial+se), width=0.1)
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + facet_grid(Temp ~ Nutr, labeller=labeller_function)
-mean_final_divide_initial_plot <- mean_final_divide_initial_plot + ylab("Average Relative Growth Rate")
+mean_final_divide_initial_plot <- mean_final_divide_initial_plot + ylab("Final area / initial area")
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + xlab("Species")
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + ylim(0,17)
 mean_final_divide_initial_plot <- mean_final_divide_initial_plot + theme_bw(base_size=18)

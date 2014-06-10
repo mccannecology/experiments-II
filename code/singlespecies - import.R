@@ -28,15 +28,9 @@ data_raw$Temp <- as.factor(data_raw$Temp)
 data_turion <- cbind(data_raw[,1:6], data_raw[,20:26])
 head(data_turion)
 
-# remove turion data from data_raw
-data_raw$turions3 <- NULL 
-data_raw$turions5 <- NULL 
-data_raw$turions7 <- NULL 
-data_raw$turions10 <- NULL 
-data_raw$turions12 <- NULL 
-data_raw$turionsTOT<- NULL 
+# add turions_per_day
+data_turion$turions_per_day <- data_turion$turionsTOT / 12
 
-head(data_raw)
 
 #############################################
 # add additional variables to the dataframe #  
@@ -264,4 +258,39 @@ summary_data_final_divide_initial$Nutr <- factor(summary_data_final_divide_initi
 
 
 
+#############################
+# Mean turionsTOT           #
+# by treatment combo        #
+# Use for plotting          #
+#############################
+# turionsTOT
+# Area day 12 / Area day 0
+summary_data_turions <- ddply(data_turion, 
+                              c("species","Temp","Nutr"), 
+                               summarise, 
+                               N = length(turionsTOT),
+                               mean = mean(turionsTOT),
+                               sd = sd(turionsTOT),
+                               se = sd / sqrt(N) )
+colnames(summary_data_turions)[5] <- "turionsTOT"
+head(summary_data_turions)
+summary_data_turions$Nutr <- factor(summary_data_turions$Nutr , levels=c("low","med","high"))
+
+#############################
+# Mean turions_per_day      #
+# by treatment combo        #
+# Use for plotting          #
+#############################
+# turionsTOT
+# Area day 12 / Area day 0
+summary_data_turions_per_day <- ddply(data_turion, 
+                                      c("species","Temp","Nutr"), 
+                                      summarise, 
+                                      N = length(turions_per_day),
+                                      mean = mean(turions_per_day),
+                                      sd = sd(turions_per_day),
+                                      se = sd / sqrt(N) )
+colnames(summary_data_turions_per_day)[5] <- "turions_per_day"
+head(summary_data_turions_per_day)
+summary_data_turions_per_day$Nutr <- factor(summary_data_turions_per_day$Nutr , levels=c("low","med","high"))
 

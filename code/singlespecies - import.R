@@ -25,11 +25,21 @@ class(data_raw$Nutr)
 data_raw$Temp <- as.factor(data_raw$Temp)
 
 # move turion data to its own data frame 
-data_turion <- cbind(data_raw[,1:6], data_raw[,20:26])
+data_turion <- cbind(data_raw[,1:6], data_raw[,20:25], data_raw[,27:33])
 head(data_turion)
 
 # add turions_per_day
 data_turion$turions_per_day <- data_turion$turionsTOT / 12
+data_turion$turion_area_per_day <- data_turion$turions_areaTOT / 12
+
+############################################
+# Convert turion number to turion area 
+############################################
+# I couldn't get this to work, so I did it in the Excel
+#data_turion$turions3_area[data_turion$species=="WB" & data_turion$turions3>0] <- (0.183589*data_turion$turions3-0.001849)
+#data_turion$turions3_area[data_turion$species=="SP" & data_turion$turions3>0] <- (data_turion$turions3 * 2.793108)
+#data_turion$turions3_area[data_turion$turions3==0 | data_turion$species == "LM"] <- 0
+#data_turion$turions3_area
 
 
 #############################################
@@ -293,4 +303,38 @@ summary_data_turions_per_day <- ddply(data_turion,
 colnames(summary_data_turions_per_day)[5] <- "turions_per_day"
 head(summary_data_turions_per_day)
 summary_data_turions_per_day$Nutr <- factor(summary_data_turions_per_day$Nutr , levels=c("low","med","high"))
+
+#############################
+# Mean turions_areaTOT      #
+# by treatment combo        #
+# Use for plotting          #
+#############################
+# turions_areaTOT
+summary_data_turions_area <- ddply(data_turion, 
+                              c("species","Temp","Nutr"), 
+                              summarise, 
+                              N = length(turions_areaTOT),
+                              mean = mean(turions_areaTOT),
+                              sd = sd(turions_areaTOT),
+                              se = sd / sqrt(N) )
+colnames(summary_data_turions_area)[5] <- "turions_areaTOT"
+head(summary_data_turions_area)
+summary_data_turions_area$Nutr <- factor(summary_data_turions_area$Nutr , levels=c("low","med","high"))
+
+#############################
+# Mean turion_area_per_day  #
+# by treatment combo        #
+# Use for plotting          #
+#############################
+# turion_area_per_day
+summary_data_turion_area_per_day <- ddply(data_turion, 
+                                      c("species","Temp","Nutr"), 
+                                      summarise, 
+                                      N = length(turion_area_per_day),
+                                      mean = mean(turion_area_per_day),
+                                      sd = sd(turion_area_per_day),
+                                      se = sd / sqrt(N) )
+colnames(summary_data_turion_area_per_day)[5] <- "turion_area_per_day"
+head(summary_data_turion_area_per_day)
+summary_data_turion_area_per_day$Nutr <- factor(summary_data_turion_area_per_day$Nutr , levels=c("low","med","high"))
 

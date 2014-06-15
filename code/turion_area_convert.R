@@ -7,7 +7,7 @@ library(plyr)
 library(ggplot2)
 
 # import data 
-data_turion_area <- read.csv("turion_area.csv")
+data_turion_area <- read.csv("turion_area-FOR_CONVERSION_ONLY.csv")
 head(data_turion_area)
 
 # add a new variable that combines plate and well to use as an ID 

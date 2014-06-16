@@ -77,7 +77,7 @@ hist(single_spirodel_turions$turion_AREA)
 
 # summary statistics
 numb_area <- length(single_spirodel_turions$turion_AREA)
-mean_area <- mean(single_spirodel_turions$turion_AREA)
+mean_area <- mean(single_spirodel_turions$turion_AREA) # 2.793108
 sd_area <- sd(single_spirodel_turions$turion_AREA)
 se_area <- sd_area/sqrt(numb_area)
 error <- qnorm(0.975)*sd_area/sqrt(numb_area)

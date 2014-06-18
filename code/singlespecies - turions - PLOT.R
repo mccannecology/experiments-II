@@ -82,7 +82,7 @@ turion_area_per_day_plot <- ggplot(summary_data_turion_area_per_day_WB, aes(x=sp
 turion_area_per_day_plot <- turion_area_per_day_plot + geom_point() 
 turion_area_per_day_plot <- turion_area_per_day_plot + geom_errorbar(aes(ymin=turion_area_per_day-se, ymax=turion_area_per_day+se), width=0.1)
 turion_area_per_day_plot <- turion_area_per_day_plot + facet_grid(Temp ~ Nutr, labeller=labeller_function)
-turion_area_per_day_plot <- turion_area_per_day_plot + ylab("Turion area (sq. mm) per day")
+turion_area_per_day_plot <- turion_area_per_day_plot + ylab(expression(paste("Turion production (", mm^2,day^-1,")",sep="")))
 turion_area_per_day_plot <- turion_area_per_day_plot + xlab("Species")
 turion_area_per_day_plot <- turion_area_per_day_plot + theme_bw(base_size=18)
 turion_area_per_day_plot <- turion_area_per_day_plot + geom_text(data=summary_data_turion_area_per_day_WB,aes(x=species, y=turion_area_per_day+se+0.35,label=label))

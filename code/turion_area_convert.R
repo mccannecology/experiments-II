@@ -46,11 +46,11 @@ head(data_turion_area_long)
 # Wolffia
 turion_area_WB <- ggplot(subset(data_turion_area_long, data_turion_area_long$species=="W"), aes(x=turion_NUMB,y=turion_AREA))
 turion_area_WB <- turion_area_WB + geom_point(size=3)
-turion_area_WB <- turion_area_WB + ggtitle("Wolffia brasiliensis")
+#turion_area_WB <- turion_area_WB + ggtitle("Wolffia brasiliensis")
 turion_area_WB <- turion_area_WB + xlab("Number of turions")
-turion_area_WB <- turion_area_WB + ylab("Turion area (sq. mm)")
-turion_area_WB <- turion_area_WB + theme_bw(base_size=18)
-turion_area_WB <- turion_area_WB + geom_smooth(method='lm')
+turion_area_WB <- turion_area_WB + ylab(expression(paste("Turion area (",mm^2,")",sep="")))
+turion_area_WB <- turion_area_WB + theme_classic(base_size=18)
+turion_area_WB <- turion_area_WB + geom_smooth(method='lm',colour="black")
 turion_area_WB
 
 # get the slope and intercept 
@@ -73,7 +73,16 @@ turion_area_SP
 # get the subset of spirodela data where theere is a single turion 
 single_spirodel_turions <- subset(data_turion_area_long, data_turion_area_long$species=="S" & data_turion_area_long$turion_NUMB==1)
 # plot a histogram 
-hist(single_spirodel_turions$turion_AREA)
+hist(single_spirodel_turions$turion_AREA,xlab="Turion area (sq.mm)")
+
+# frequency distribution for size of single turions
+turion_area_SP2 <- ggplot(single_spirodel_turions, aes(x=turion_AREA))
+turion_area_SP2 <- turion_area_SP2 + geom_histogram(binwidth=0.5,colour="black",fill="grey")
+turion_area_SP2 <- turion_area_SP2 + ylab("Frequency")
+turion_area_SP2 <- turion_area_SP2 + xlab(expression(paste("Turion area (",mm^2,")",sep="")))
+turion_area_SP2 <- turion_area_SP2 + theme_classic(base_size=18)
+turion_area_SP2 <- turion_area_SP2 +geom_vline(x=2.793108, linetype="dashed")
+turion_area_SP2
 
 # summary statistics
 numb_area <- length(single_spirodel_turions$turion_AREA)

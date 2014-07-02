@@ -1,0 +1,206 @@
+waterbody,surfacearea_ha,TOTP_avg,composition,FP_species_richness,FPcover_max
+Private Pond (3),0.4,0.1186,A LM SP W,4,1
+Swan Pond (2),4.39,0.0222,LM  LV  SP W,4,0.0038
+Paul T. Given County Park Pond,0.1,0.01768,LM R SP W,4,0.4458
+Horseshoe Pond,2.23,0.05405,LM LT SP,3,0.024
+Quonnipaug Lake,39.94,0.0101,LM LT SP,3,0.0034
+Betty Allen Twin Pond,0.59,0.01972,LM SP W,3,0.813
+Blydenburgh Lake,40.67,0.02095,LM SP W,3,0.05
+Bolton Notch Pond,8.5,0.0135,LM SP W,3,0.0017
+Branford Supply Pond (East),7.04,0.0815,LM SP W,3,0.0281
+Chase Reservoir,28.77,0.0215,LM SP W,3,5.00E-04
+Doaneville Pond,27.68,0.0515,LM SP W,3,2.00E-04
+Highwoods Drive Pond,0.0858,0.02815,LM SP W,3,1
+Lower Yaphank Lake,10.12,0.0184,LM SP W,3,0.1665
+Mackenzie Reservoir  2  small,59.8,0.0385,LM SP W,3,0.1421
+Mill Pond  North Basin,1.5,0.02579,LM SP W,3,0.5652
+Mill Pond  South Basin,1.13,0.02366,LM SP W,3,0.6969
+"Mills Pond, Lower",0.4,0.0402,LM SP W,3,1
+North Farms Reservoir,26.06,0.1116,LM SP W,3,0.0504
+Swan Pond (1),23.22,0.01955,LM SP W,3,0.01
+Tilleys Pond,0.85,0.1836,LM SP W,3,1
+Town Mill Pond ,1.17,0.0374,LM SP W,3,0.0472
+Wampum Hill Pond,0.16,0.178,LM SP W,3,1
+Young's Pond,1.7,0.0683,LM SP W,3,1
+Hatch Pond,26.71,0.1574,LT SP W,3,0.1725
+Private Pond (5) Upper/East,0.12,0.2035,A W,2,1
+Redwing Pond,0.49,0.018,LM SP,2,0.0173
+Rolling Ridge Pond,0.4,0.1688,LM SP,2,0.0288
+Upper Yaphank Lake,7.4,0.01829,LM SP,2,0.0029
+Angus Park Pond,3.8,0.039,LM SP,2,0.2616
+Beaver Pond,12.23,0.0476,LM SP,2,0.0024
+Beeslick Lake,10.93,NA,LM SP,2,6.00E-04
+Birch Pond,0.27,0.18371,LM SP,2,0.9109
+Brandegea Lake,11.94,0.074,LM SP,2,0.0031
+Crystal Lake (3),75.84,0.055,LM SP,2,0.01
+Dayton Pond ,2.67,0.0396,LM SP,2,0.0269
+Elise Lake,6.27,0.055,LM SP,2,0.0017
+Mill Pond Park,1.46,0.0948,LM SP,2,0.4938
+"Mills Pond, Upper",1.78,0.0671,LM SP,2,0.24
+New England Road Pond,0.0275,0.02234,LM SP,2,0.8
+116 Old Field Road Pond,0.4,0.38664,LM W,2,1
+Beseck Lake,45.73,0.032,LM W,2,4.00E-04
+Bishops Pond (Research Parkway),4.7394,0.03004,LM W,2,0.3
+Blissville Pond,11.9,0.057,LM W,2,0.001
+Dunlop Pond (Unnamed Lake with Dam #3036),2.99,0.0975,LM W,2,0.2478
+Hamlin Pond,4.86,0.0895,LM W,2,0.0058
+Hartens Pond (Pond  View Condos),0.5766,0.06396,LM W,2,1
+Indian Lake (1),10.93,0.069,LM W,2,0.0333
+Lakeview Lake (Willow Lake),1.09,0.053,LM W,2,0.1605
+Lucky Pond (Galko Farm Pond),0.4,0.1223,LM W,2,0.2064
+Mackenzie Reservoir  1  large,135.34,0.0317,LM W,2,0.0086
+Spring Lake (2),3.08,0.017,LM W,2,0.0535
+Upper Moodus Reservoir,178.06,0.0697,LM W,2,0.0022
+Putnam Park Pond,5.67,0.02,LT,1,0.0011
+Quassapaug Lake,119.79,NA,SP W,2,0.0021
+Silver Lake,59.08,0.0728,SP W,2,0.1086
+Private Pond (5) Lower/West,0.28,1.4246,A,1,1
+Anni's Pond (Kleman's Dam),2.19,0.0195,LM,1,0.0014
+Ball Pond,33.39,0.1845,LM,1,0.005
+Bunnels Pond,13.52,0.0175,LM,1,0.0105
+Canoe Brook Lake,25.78,0.0507,LM,1,3.00E-04
+Cedar Pond,8.82,0.0245,LM,1,0.001
+Crescent Lake,14.16,0.164,LM,1,2.00E-04
+Crystal Lake (2),2.23,0.0425,LM,1,0.093
+"Dividend Pond, Lower",0.53,0.0521,LM,1,0.0635
+"Dividend Pond, Upper",2.35,0.1733,LM,1,0.0292
+Echo Lake,4.33,0.048,LM,1,0.008
+Farm Brook Reservoir,6.07,0.1647,LM,1,0.0016
+Gibbs Pond,1.61,0.03698,LM,1,0.01
+Graniss Lake,7.89,0.0187,LM,1,0.0024
+Larkin Pond,3.44,0.056,LM,1,0.0094
+Lower Moodus Reservoir,50.99,0.034,LM,1,1.00E-04
+Mamanasco Lake,35.7,0.0524,LM,1,7.00E-04
+Mills Pond,0.36,0.08862,LM,1,1
+Nichols Pond,5.14,0.0525,LM,1,2.00E-04
+Oakwood Pond,0.2,0.091,LM,1,0.008
+Robinson Pond ,3.34,0.03523,LM,1,0.9
+Salmon Brook,0.45,0.0995,LM,1,0.0316
+Scribner Pond,0.97,0.5045,LM,1,0.7105
+Shelton Reservoir #2,2.95,0.0415,LM,1,1.00E-04
+Slopers Pond,5.99,NA,LM,1,0.0042
+Stamler Pond,0.0309,0.20642,LM,1,0.05
+Talmadges Ice Pond,0.45,0.107,LM,1,0.0797
+Talmage Pond,1.21,0.065,LM,1,0.005
+Ulbrich Reservoir,62.32,0.0285,LM,1,4.00E-04
+Wah Wah Taysee Pond,0.57,0.028,LM,1,0.0153
+Waubeeka Lake,14.45,0.013,LM,1,8.00E-04
+West Pond Road Pond,0.0281,0.07824,LM,1,1
+Williams Brook (Highland Lake) ,3.2,0.074,LM,1,9.00E-04
+"Halls Pond, Ashford",33.18,0.007,SP,1,8.00E-04
+Indian Lake (2),82.96,0.014,SP,1,6.00E-04
+Pattaganset Lake,51.8,0.0078,SP,1,0.018
+Roseland Lake,38.85,0.2085,SP,1,2.00E-04
+Taunton Lake,50.18,0.1485,SP,1,0.0062
+"Twin Lake, North",5.42,0.0421,SP,1,0.1013
+"Twin Lake, South",6.6,0.0218,SP,1,0.0401
+Hummers Pond,3.08,0.0755,W,1,0.44
+One Acre Pond,0.4,0.0425,W,1,0.6611
+Sound Avenue Pond,0.24,0.45717,W,1,1
+Twin Lakes Golf Course Pond,0.1743,0.02877,W,1,1
+4H Camp Pond,0.36,0.0165,      ,0,0
+Alexander Lake,87.01,0.028,      ,0,0
+Amos Lake,45.73,0.0222,      ,0,0
+Amston Lake,75.68,0.053,      ,0,0
+Anderson Pond,22.91,0.0507,      ,0,0
+Andover Lake,63.54,0.013,      ,0,0
+Ashford Lake,21.45,0.0075,      ,0,0
+Avery Pond,10.4,0.084,      ,0,0
+Bantam Pond (Timber Lake),10,0.0565,      ,0,0
+Basserman Pond,0.04,0.0295,      ,0,0
+Beach Pond,150.54,0.0125,      ,0,0
+Beaver Dam Lake,23.39,0.0165,      ,0,0
+Bigelow Pond,10.12,0.0365,      ,0,0
+Billings Lake,39.42,0.0035,      ,0,0
+Bissonette Pond,19.63,0.033,      ,0,0
+Black Hall Pond,5.1,0.059,      ,0,0
+Black Pond (2),29.7,0.0165,      ,0,0
+"Bolton Lake, Lower",70.82,0.0133,      ,0,0
+"Bolton Lake, Middle",48.97,0.0292,      ,0,0
+"Bolton Lake, Upper",20.23,0.03,      ,0,0
+"Broad Brook Reservoir, Lower",0.81,0.0366,      ,0,0
+"Broad Brook Reservoir, Upper",0.32,0.0407,      ,0,0
+Burr Pond,34.44,0.006,      ,0,0
+Bushy Pond,3.44,0.0183,      ,0,0
+Cedar Lake,28.04,0.0251,      ,0,0
+Chaffee Lake,21.04,0.0185,      ,0,0
+Chalkers Mill Pond,4.17,0.033,      ,0,0
+Clear Lake,8.09,0.059,      ,0,0
+Coventry Lake,150.95,0.0345,      ,0,0
+Crystal Lake (1),12.55,0.0375,      ,0,0
+Crystal Pond,58.68,0.0805,      ,0,0
+Cusick Pond,0.08,0.0185,      ,0,0
+Deer Lake,12.95,0.017,      ,0,0
+Deer Lake Reservoir,2.43,0.017,      ,0,0
+Diamond Lake,8.09,0.011,      ,0,0
+Dog Pond,26.63,0.043,      ,0,0
+Eagleville Lake ,32.21,NA,      ,0,0
+Fall Mountain Lake,12.14,0.012,      ,0,0
+Fence Rock Lake,6.84,0.0295,      ,0,0
+Forest Lake,26.71,0.016,      ,0,0
+Gables Pond,5.58,0.014,      ,0,0
+Gardner Lake,214.08,0.011,      ,0,0
+Gladstone Pond,0.32,0.0695,      ,0,0
+Great Hill Pond,30.76,0.002,      ,0,0
+Green Falls Reservoir,19.51,0.003,      ,0,0
+Hayward Lake,69.61,0.0138,      ,0,0
+Held Pond,12.71,0.0165,      ,0,0
+Hidden Lake,15.78,0.0185,      ,0,0
+Higby Reservor #1,24.73,0.0145,      ,0,0
+Higby Reservor #2,7.28,0.0415,      ,0,0
+Higby Reservor #3,17.12,0.044,      ,0,0
+Higby Reservor #4,11.29,0.004,      ,0,0
+Horse Pond,5.34,0.03,      ,0,0
+Hospital Reservoir #3,2.39,0.006,      ,0,0
+Housatonic Lake,132.74,0.02,      ,0,0
+Howells Pond,5.79,0.0375,      ,0,0
+Ingham Pond (Lake Rockview),5.79,0.039,      ,0,0
+Ivoryton Pond,1.01,0.055,      ,0,0
+Keley (Kelsey) Pond,4.45,0.038,      ,0,0
+Laurel Lake,6.47,0.0545,      ,0,0
+Linsley Pond,9.27,0.174,      ,0,0
+Long Meadow Pond,40.47,0.0964,      ,0,0
+Lower Pond,1.62,0.0165,      ,0,0
+Merriman Pond,14.37,0.0395,      ,0,0
+Messerschmidt Pond,29.54,0.0355,      ,0,0
+Millers Pond,13.19,0.006,      ,0,0
+Mohawk Pond,6.56,0.018,      ,0,0
+Mono Pond,41.28,0.0132,      ,0,0
+Moosup Pond,38.77,0.1089,      ,0,0
+Morey Pond,18.13,0.0155,      ,0,0
+Muddy Pond,15.41,0.0109,      ,0,0
+Mystic Seaport Pond,0.12,0.024,      ,0,0
+North Pond (Laurelwood Lake),3.28,0.044,      ,0,0
+Paderewski Park Pond,6.39,0.043,      ,0,0
+Pinewood Lake,24.36,0.0148,      ,0,0
+Pistapaug Pond,55.2,0.0155,      ,0,0
+Pocotopaug Lake,206.79,0.0615,      ,0,0
+Powers Lake,58.27,0.016,      ,0,0
+Private Pond (1),1.01,0.009,      ,0,0
+Private Pond (2),0.2,0.0295,      ,0,0
+Private Pond (4),0.01,0.0102,      ,0,0
+Private Pond (6),0.12,0.0934,      ,0,0
+Quaddick Reservoir,165.11,0.0065,      ,0,0
+Rogers Lake,105.22,0.0065,      ,0,0
+Route 7 Pond,3.56,0.0123,      ,0,0
+Schreeder Pond,1.58,0.043,      ,0,0
+Shelton Reservoir #3,4.17,0.028,      ,0,0
+Silvias Pond,8.01,0.0905,      ,0,0
+Spring Lake (1),15.05,0.049,      ,0,0
+Squantz Pond,107.65,0.0065,      ,0,0
+Staffordville Reservoir,60.3,0.0227,      ,0,0
+Sylvan Lake,3.68,0.024,      ,0,0
+Timber Lake,4.86,0.021,      ,0,0
+Tyler Lake,75.68,0.1033,      ,0,0
+Upper Guilford Lake,5.26,0.027,      ,0,0
+West Hill Pond,99.15,0.0108,      ,0,0
+West Lake,21.12,0.0502,      ,0,0
+West Side Pond,16.96,0.2151,      ,0,0
+Williams Pond,101.17,0.0135,      ,0,0
+Williamson Pond,0.04,NA,      ,0,0
+Winchester Lake,99.55,0.0035,      ,0,0
+Winnemaug Lake,45.69,0.0305,      ,0,0
+Wintergreen Lake,17.97,0.0331,      ,0,0
+Woodridge Lake,24.28,0.0361,      ,0,0
+Wyassup Lake,40.8,0.0358,      ,0,0
+Wyler Pond,0.04,NA,      ,0,0

@@ -43,8 +43,16 @@ row.names(data_turion_area_long) <- seq(nrow(data_turion_area_long)) # Re-name t
 # check it out 
 head(data_turion_area_long)
 
-# Wolffia
-turion_area_WB <- ggplot(subset(data_turion_area_long, data_turion_area_long$species=="W"), aes(x=turion_NUMB,y=turion_AREA))
+# Remove any cases that are 0,0
+wolffia_data <- subset(data_turion_area_long, data_turion_area_long$species=="W")
+wolffia_data <- subset(wolffia_data, wolffia_data$turion_NUMB > 0)
+wolffia_data
+
+###########
+# Wolffia #
+# OLS     #
+###########
+turion_area_WB <- ggplot(wolffia_data, aes(x=turion_NUMB,y=turion_AREA))
 turion_area_WB <- turion_area_WB + geom_point(size=3)
 #turion_area_WB <- turion_area_WB + ggtitle("Wolffia brasiliensis")
 turion_area_WB <- turion_area_WB + xlab("Number of turions")
@@ -54,13 +62,57 @@ turion_area_WB <- turion_area_WB + geom_smooth(method='lm',colour="black")
 turion_area_WB
 
 # get the slope and intercept 
-lm(turion_AREA ~ turion_NUMB, data=subset(data_turion_area_long, data_turion_area_long$species=="W"))
-summary(lm(turion_AREA ~ turion_NUMB, data=subset(data_turion_area_long, data_turion_area_long$species=="W")))
-# Intercept: -0.001849
-# Slope: 0.183589 
-# adj R sq: 0.9524
+W_turion_lm <- lm(turion_AREA ~ turion_NUMB, data=wolffia_data)
+summary(W_turion_lm)
+# Intercept: -0.004554
+# Slope: 0.183665 
+# adj R sq: 0.9265
 
-# Spirodela
+# test for heterogeneity of variance - Breusch-Pagan Test 
+# The Breusch-Pagan test fits a linear regression model to the residuals of a linear regression model
+# (by default the same explanatory variables are taken as in the main regression model) and rejects if
+# too much of the variance is explained by the additional explanatory variables.
+library(lmtest)
+bptest(turion_AREA ~ turion_NUMB, data=wolffia_data)
+
+# examine the residuals 
+plot(wolffia_data$turion_NUMB, resid(W_turion_lm), ylab="Residuals", xlab="Number of turions") 
+abline(0, 0) 
+
+###########
+# Wolffia #
+# WLS     #
+###########
+# get the slope and intercept 
+W_turion_lm_weighted <- lm(turion_AREA ~ turion_NUMB, data=wolffia_data, weights=1/(wolffia_data$turion_NUMB^2))
+summary(W_turion_lm_weighted)
+# Intercept: 0.090386
+# Slope: 0.180118
+# adj R sq: 0.9452
+
+# examine the residuals 
+plot(wolffia_data$turion_NUMB, resid(W_turion_lm_weighted), ylab="Residuals", xlab="Number of turions") 
+abline(0, 0) 
+
+
+#######################
+# plot both OLS & WLS #
+#######################
+turion_area_WB_2 <- ggplot(wolffia_data, aes(x=turion_NUMB,y=turion_AREA))
+turion_area_WB_2 <- turion_area_WB_2 + geom_point(size=3)
+turion_area_WB_2 <- turion_area_WB_2 + xlab("Number of turions")
+turion_area_WB_2 <- turion_area_WB_2 + ylab(expression(paste("Turion area (",mm^2,")",sep="")))
+turion_area_WB_2 <- turion_area_WB_2 + theme_classic(base_size=18)
+turion_area_WB_2 <- turion_area_WB_2 + geom_abline(intercept=-0.004554,slope=0.180118,colour="blue") # this is the OLS line 
+turion_area_WB_2 <- turion_area_WB_2 + geom_abline(intercept=0.090386,slope=0.180118,colour="red") # this is the WLS line 
+turion_area_WB_2
+
+ggsave("turion_numb_to_area - Wolffia - OLS & WLS.jpg",turion_area_WB_2,height=6,width=6)
+
+
+#############
+# Spirodela #
+#############
 turion_area_SP <- ggplot(subset(data_turion_area_long, data_turion_area_long$species=="S"), aes(x=turion_NUMB,y=turion_AREA))
 turion_area_SP <- turion_area_SP + geom_point(size=3)
 turion_area_SP <- turion_area_SP + ggtitle("Spirodela polyrhiza")

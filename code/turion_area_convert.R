@@ -48,6 +48,7 @@ wolffia_data <- subset(data_turion_area_long, data_turion_area_long$species=="W"
 wolffia_data <- subset(wolffia_data, wolffia_data$turion_NUMB > 0)
 wolffia_data
 
+
 ###########
 # Wolffia #
 # OLS     #
@@ -75,9 +76,47 @@ summary(W_turion_lm)
 library(lmtest)
 bptest(turion_AREA ~ turion_NUMB, data=wolffia_data)
 
-# examine the residuals 
+# examine the residuals against the x values 
 plot(wolffia_data$turion_NUMB, resid(W_turion_lm), ylab="Residuals", xlab="Number of turions") 
 abline(0, 0) 
+
+# examine the residuals against the fitted values of y
+plot(W_turion_lm$fitted, resid(W_turion_lm), ylab="Residuals", xlab="Fitted values") 
+abline(0, 0) 
+
+plot(fitted.values(W_turion_lm),rstudent(W_turion_lm),main="Studentized residuals vs fitted values")
+abline(h=0,lty=2)
+
+library(car)
+spreadLevelPlot(W_turion_lm)
+# this suggests a power transformation 
+
+##############
+# Wolffia    #
+# robust SEs #
+##############
+# http://polisci.msu.edu/jacoby/icpsr/regress3/lectures/week4/14.Heteroskedastic.pdf
+
+library(car)
+
+# hccm = "heterogeneity consistent covariance matrix"
+sqrt(diag(hccm(W_turion_lm)))
+
+# the squareroot of the HCCM matrix gives the robust SEs 
+
+# define the robust.se function 
+robust.se <- function(model) {
+  s <- summary(model)
+  wse <- sqrt(diag(hccm(model))) # these are your robust SEs (also called "White standard errors")
+  t <- model$coefficients / wse # divide the original coefficients by the robust SE 
+  p <- 2*pnorm(-abs(t)) 
+  results <- cbind(model$coefficients, wse, t, p)
+  dimnames(results) <- dimnames(s$coefficients)
+  results
+}
+
+# use the robust.se function
+robust.se(W_turion_lm)
 
 ###########
 # Wolffia #
@@ -90,10 +129,13 @@ summary(W_turion_lm_weighted)
 # Slope: 0.180118
 # adj R sq: 0.9452
 
-# examine the residuals 
+# examine the residuals against the x values 
 plot(wolffia_data$turion_NUMB, resid(W_turion_lm_weighted), ylab="Residuals", xlab="Number of turions") 
 abline(0, 0) 
 
+# examine the residuals against the fitted values of y
+plot(W_turion_lm_weighted$fitted, resid(W_turion_lm_weighted), ylab="Residuals", xlab="Fitted values") 
+abline(0, 0) 
 
 #######################
 # plot both OLS & WLS #

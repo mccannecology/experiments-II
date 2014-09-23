@@ -118,6 +118,9 @@ robust.se <- function(model) {
 # use the robust.se function
 robust.se(W_turion_lm)
 
+# compare it to the original 
+summary(W_turion_lm)$coefficients
+
 ###########
 # Wolffia #
 # WLS     #

@@ -44,7 +44,7 @@ mean_summary_data_turions_plot <- mean_summary_data_turions_plot + xlab("Species
 mean_summary_data_turions_plot <- mean_summary_data_turions_plot + theme_bw(base_size=18)
 mean_summary_data_turions_plot <- mean_summary_data_turions_plot + geom_text(data=summary_data_turions,aes(x=species, y=turion_area_per_day+se+0.2,label=label))
 mean_summary_data_turions_plot <- mean_summary_data_turions_plot + geom_hline(aes(intercept=0),linetype="dashed")
-mean_summary_data_turions_plot 
+
 
 # save it 
 ggsave(filename = "turion_production_plot_area_per_day.jpg", mean_summary_data_turions_plot, height=11, width=11)

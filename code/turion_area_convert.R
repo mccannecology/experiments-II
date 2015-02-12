@@ -59,8 +59,10 @@ turion_area_WB <- turion_area_WB + geom_point(size=3)
 turion_area_WB <- turion_area_WB + xlab("Number of turions")
 turion_area_WB <- turion_area_WB + ylab(expression(paste("Turion area (",mm^2,")",sep="")))
 turion_area_WB <- turion_area_WB + theme_classic(base_size=18)
-turion_area_WB <- turion_area_WB + geom_smooth(method='lm',colour="black")
+turion_area_WB <- turion_area_WB + geom_smooth(method='lm',colour="black",se=F)
 turion_area_WB
+
+ggsave("turion_number_to_area_WB.jpg",turion_area_WB,height=8,width=8)
 
 # get the slope and intercept 
 W_turion_lm <- lm(turion_AREA ~ turion_NUMB, data=wolffia_data)

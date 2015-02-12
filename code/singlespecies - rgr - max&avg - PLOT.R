@@ -60,3 +60,23 @@ combo_RGR_plot
 
 # save it 
 ggsave(filename = "combo_RGR_plot.jpg", combo_RGR_plot, height=11, width=11)
+
+# make the plot for hydrobiologia 
+combo_RGR_plot <- ggplot(summary_data_RGRII, aes(x=species,y=RGRvalue,group=RGR)) 
+combo_RGR_plot <- combo_RGR_plot + geom_point(aes(shape=RGR),size=3) 
+combo_RGR_plot <- combo_RGR_plot + scale_shape_manual(values=c(1,16))
+combo_RGR_plot <- combo_RGR_plot + geom_errorbar(aes(ymin=RGRvalue-se, ymax=RGRvalue+se), width=0.1)
+combo_RGR_plot <- combo_RGR_plot + facet_grid(Temp ~ Nutr, labeller=labeller_function)
+combo_RGR_plot <- combo_RGR_plot + xlab("Species")
+combo_RGR_plot <- combo_RGR_plot + ylab(expression(paste("Relative growth rate (", mm^2,mm^-2,day^-1,")",sep="")))
+combo_RGR_plot <- combo_RGR_plot + geom_hline(aes(yintercept=0),linetype="dashed")
+#combo_RGR_plot <- combo_RGR_plot + geom_text(data=summary_data_RGRII,aes(x=species, y=RGRvalue+se+0.025,label=label1))
+combo_RGR_plot <- combo_RGR_plot + geom_text(data=summary_data_RGRII,aes(x=species, y=RGRvalue-se-0.025,label=label2))
+combo_RGR_plot <- combo_RGR_plot + theme_bw(base_size=12)
+combo_RGR_plot <- combo_RGR_plot + theme(legend.position="none")
+combo_RGR_plot 
+
+# save for hydrobiologia
+ggsave(filename = "Fig01-combo_RGR_plot.jpg", combo_RGR_plot, dpi=1200, units="mm", width=174)
+ggsave(filename = "Fig01-combo_RGR_plot.eps", combo_RGR_plot, dpi=1200, units="mm", width=174)
+

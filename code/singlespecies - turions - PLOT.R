@@ -50,6 +50,20 @@ mean_summary_data_turions_plot
 ggsave(filename = "turion_production_plot_area_per_day.jpg", mean_summary_data_turions_plot, height=11, width=11)
 
 
+# re-making the plot for Hydrobiologia
+mean_summary_data_turions_plot <- ggplot(summary_data_turions, aes(x=species,y=turion_area_per_day)) + geom_point(size=3) 
+mean_summary_data_turions_plot <- mean_summary_data_turions_plot + geom_errorbar(aes(ymin=turion_area_per_day-se, ymax=turion_area_per_day+se), width=0.1)
+mean_summary_data_turions_plot <- mean_summary_data_turions_plot + facet_grid(Temp ~ Nutr, labeller=labeller_function)
+mean_summary_data_turions_plot <- mean_summary_data_turions_plot + ylab(expression(paste("Turion production (", mm^2,day^-1,")",sep="")))
+mean_summary_data_turions_plot <- mean_summary_data_turions_plot + xlab("Species")
+mean_summary_data_turions_plot <- mean_summary_data_turions_plot + theme_bw(base_size=12)
+mean_summary_data_turions_plot <- mean_summary_data_turions_plot + geom_text(data=summary_data_turions,aes(x=species, y=turion_area_per_day+se+0.2,label=label))
+mean_summary_data_turions_plot <- mean_summary_data_turions_plot + geom_hline(aes(intercept=0),linetype="dashed")
+mean_summary_data_turions_plot 
+
+# save it 
+ggsave(filename = "Fig02-turion_production_plot_area_per_day.jpg", mean_summary_data_turions_plot, dpi=1200, units="mm", width=174)
+ggsave(filename = "Fig02-turion_production_plot_area_per_day.eps", mean_summary_data_turions_plot, dpi=1200, units="mm", width=174)
 
 
 

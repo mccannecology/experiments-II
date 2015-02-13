@@ -62,7 +62,7 @@ mean_summary_data_turions_plot <- mean_summary_data_turions_plot + geom_hline(ae
 mean_summary_data_turions_plot 
 
 # save it 
-ggsave(filename = "Fig02-turion_production_plot_area_per_day.jpg", mean_summary_data_turions_plot, dpi=1200, units="mm", width=174)
+ggsave(filename = "Fig02-turion_production_plot_area_per_day.jpg", mean_summary_data_turions_plot, dpi=300, units="mm", width=174)
 ggsave(filename = "Fig02-turion_production_plot_area_per_day.eps", mean_summary_data_turions_plot, dpi=1200, units="mm", width=174)
 
 

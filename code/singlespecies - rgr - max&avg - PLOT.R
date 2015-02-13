@@ -77,6 +77,6 @@ combo_RGR_plot <- combo_RGR_plot + theme(legend.position="none")
 combo_RGR_plot 
 
 # save for hydrobiologia
-ggsave(filename = "Fig01-combo_RGR_plot.jpg", combo_RGR_plot, dpi=1200, units="mm", width=174)
+ggsave(filename = "Fig01-combo_RGR_plot.jpg", combo_RGR_plot, dpi=300, units="mm", width=174)
 ggsave(filename = "Fig01-combo_RGR_plot.eps", combo_RGR_plot, dpi=1200, units="mm", width=174)
 
